@@ -45,6 +45,9 @@ export default function Signup() {
             }
 
         }
+        if (isAuthenticated()) {
+            return <Redirect to='/' />
+        }
     }
 
 

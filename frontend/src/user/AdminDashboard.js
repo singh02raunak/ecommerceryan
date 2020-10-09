@@ -11,11 +11,11 @@ const AdminDashboard = () => {
     const adminLink = () => {
         return (
             <div className="card">
-                <h4 className="card-header">User Links</h4>
+                <h4 className="card-header">admin Links</h4>
                 <ul className="list-group">
                     <li className="list-group-item">
-                        <Link className="nav-link" to="/create/product">
-                            create
+                        <Link className="nav-link" to="/create/category">
+                            create category
                         </Link>
                     </li>
                     <li className="list-group-item">
@@ -33,7 +33,7 @@ const AdminDashboard = () => {
         <div>
             <Layout title="dashboard" description="description ">
 
-                <h3 className="card-header">User Information</h3>
+                <h3 className="card-header">admin Information</h3>
                 <ul className="list-group">
                     <li className="list-group-item">{name}</li>
                     <li className="list-group-item">{email}</li>
