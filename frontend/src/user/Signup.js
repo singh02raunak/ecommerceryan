@@ -81,7 +81,6 @@ export default function Signup() {
                 {showSuccess()}
                 {signUpForm()}
                 {error && <div>{error}</div>}
-
             </Layout>
         </div>
     )

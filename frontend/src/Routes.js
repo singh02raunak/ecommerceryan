@@ -8,6 +8,8 @@ import AdminRoute from './auth/AdminRoute'
 import Signin from './user/Signin'
 import Signup from './user/Signup'
 import UserDashboard from './user/UserDashboard'
+import AddCategory from './admin/AddCategory'
+import AddProduct from './admin/AddProduct'
 
 
 export default function Routes() {
@@ -21,7 +23,8 @@ export default function Routes() {
                 <Route exact path="/signup" component={Signup} />
                 <PrivateRoute exact path="/user/dashboard" component={UserDashboard} />
                 <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
-
+                <AdminRoute exact path='/create/category' component={AddCategory} />
+                <AdminRoute exact path='/create/product' component={AddProduct} />
 
             </Switch>
         </BrowserRouter>
