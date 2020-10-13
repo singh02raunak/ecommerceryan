@@ -40,12 +40,13 @@ const AddProduct = () => {
 
     const handleChange = event => {
         const value = event.target.name === 'photo' ? event.target.files[0] : event.target.value;
+        formData.set([event.target.name],value)
         setValues({ ...values, [event.target.name]: value });
     };
 
 
     useEffect(() => {
-
+setValues({...values,formData:new FormData()})
 
         console.log(123);
     }, [])
@@ -53,8 +54,8 @@ const AddProduct = () => {
     const clickSubmit = (e) => {
         e.preventDefault()
         console.log(values);
-        // setValues({ ...values, error: '', loading: true })
-        createProduct(user._id, token, values)
+        setValues({ ...values, error: '', loading: true })
+        createProduct(user._id, token, formData)
             .then(data => {
                 if (data.error) {
                     setValues({ ...values, error: data.error, loading: false })
@@ -73,11 +74,11 @@ const AddProduct = () => {
     const newPostForm = () => (
         <form className="mb-3" onSubmit={clickSubmit}>
             <h4>Post Photo</h4>
-            {/* <div className="form-group">
+            <div className="form-group">
                 <label className="btn btn-secondary">
                     <input onChange={handleChange} type="file" name="photo" accept="image/*" />
                 </label>
-            </div> */}
+            </div>
 
             <div className="form-group">
                 <label className="text-muted">Name</label>
@@ -98,7 +99,10 @@ const AddProduct = () => {
                 <label className="text-muted">Category</label>
                 <select onChange={handleChange} className="form-control">
                     <option>Please select</option>
-                    <option>1</option>
+                    <option value="5f858f56ee18141a5064d5c0">1</option>
+                    <option value="5f858f56ee18141a5064d5c0">2</option>
+
+
                 </select>
             </div>
 

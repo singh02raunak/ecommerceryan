@@ -76,6 +76,22 @@ export const createProduct = (userId, token, product) => {
         .catch(err => {
             console.log(err);
         });
+
+    //     const config = {
+    //         headers: {
+    //             Accept: 'application/json',
+    //         Authorization: `Bearer ${token}`
+    
+    //         }
+    //     }
+    //  return   Axios.post(`${api}/product/create/${userId}`,product,config)
+    //     .then(res=>{
+    //         console.log(res);
+    //         return res.data
+    //     }).catch(err=>{
+    //         console.log(err)
+    //         return err.response.data
+    //     })
 };
 
 
