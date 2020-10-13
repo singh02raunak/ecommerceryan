@@ -95,3 +95,12 @@ export const createProduct = (userId, token, product) => {
 };
 
 
+export const getCategory=()=>{
+    return Axios.get(`${api}/categories`).then(res=>{
+        console.log(res)
+        return res.data
+    }).catch(err=>{
+        console.log(err)
+        return err.response.data
+    })
+}
