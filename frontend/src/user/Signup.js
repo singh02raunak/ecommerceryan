@@ -14,11 +14,14 @@ export default function Signup() {
         success: false
     })
 
+
     const { name, error, email, password, success } = values
     const handleChange = (e) => {
         setValues({ ...values, error: false, [e.target.name]: e.target.value })
 
     }
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(values);
@@ -85,3 +88,7 @@ export default function Signup() {
         </div>
     )
 }
+
+
+
+

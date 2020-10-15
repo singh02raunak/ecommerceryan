@@ -15,6 +15,10 @@ const AddCategory = () => {
         setSuccess('')
         setName(e.target.value);
     }
+
+
+
+
     const { user, token } = isAuthenticated();
 
 
@@ -32,6 +36,8 @@ const AddCategory = () => {
             }
         });
     };
+
+
 
     const newCategoryFom = () => (
         <form onSubmit={clickSubmit}>
