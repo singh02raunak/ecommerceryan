@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { isAuthenticated } from '../auth'
 import Layout from '../core/Layout'
-import { createProduct } from './apiAdmin';
+import { createProduct, getCategory } from './apiAdmin';
 
 const AddProduct = () => {
     const [values, setValues] = useState({
@@ -40,21 +40,31 @@ const AddProduct = () => {
 
     const handleChange = event => {
         const value = event.target.name === 'photo' ? event.target.files[0] : event.target.value;
+        formData.set([event.target.name],value)
         setValues({ ...values, [event.target.name]: value });
     };
 
+    const init=()=>{
+        getCategory().then(data=>{
+            if(data.error){
+                setValues({...values,error:data.error})
+            }
+            else{
+                setValues({...values,categories:data,formData: new FormData()})
+            }
+        })
+    }
 
     useEffect(() => {
-
-
-        console.log(123);
+        init()
     }, [])
 
-    const clickSubmit = (e) => {
+    const clickSubmit = (e) => { 
         e.preventDefault()
         console.log(values);
-        // setValues({ ...values, error: '', loading: true })
-        createProduct(user._id, token, values)
+        getCategory()
+        setValues({ ...values, error: '', loading: true })
+        createProduct(user._id, token, formData)
             .then(data => {
                 if (data.error) {
                     setValues({ ...values, error: data.error, loading: false })
@@ -96,15 +106,24 @@ const AddProduct = () => {
 
             <div className="form-group">
                 <label className="text-muted">Category</label>
-                <select onChange={handleChange} className="form-control">
-                    <option>Please select</option>
-                    <option>1</option>
+                <select onChange={handleChange} className="form-control" name='category'>
+                <option>Please select</option>
+                    {categories &&
+                        categories.map((c,i)=>{
+                       return <option key={i} value={c._id}>{c.name}</option>
+                        })
+                    }
+                    {/* <option>Please select</option>
+                    <option value="5f858f56ee18141a5064d5c0">1</option>
+                    <option value="5f858f56ee18141a5064d5c0">2</option> */}
+
+
                 </select>
             </div>
 
             <div className="form-group">
                 <label className="text-muted">Shipping</label>
-                <select onChange={handleChange} className="form-control">
+                <select onChange={handleChange} className="form-control" name='shipping'>
                     <option>Please select</option>
                     <option value="0">No</option>
                     <option value="1">Yes</option>
