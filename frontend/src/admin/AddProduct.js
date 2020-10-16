@@ -40,17 +40,17 @@ const AddProduct = () => {
 
     const handleChange = event => {
         const value = event.target.name === 'photo' ? event.target.files[0] : event.target.value;
-        formData.set([event.target.name],value)
+        formData.set([event.target.name], value)
         setValues({ ...values, [event.target.name]: value });
     };
 
-    const init=()=>{
-        getCategory().then(data=>{
-            if(data.error){
-                setValues({...values,error:data.error})
+    const init = () => {
+        getCategory().then(data => {
+            if (data.error) {
+                setValues({ ...values, error: data.error })
             }
-            else{
-                setValues({...values,categories:data,formData: new FormData()})
+            else {
+                setValues({ ...values, categories: data, formData: new FormData(), photo: '' })
             }
         })
     }
@@ -59,7 +59,7 @@ const AddProduct = () => {
         init()
     }, [])
 
-    const clickSubmit = (e) => { 
+    const clickSubmit = (e) => {
         e.preventDefault()
         console.log(values);
         getCategory()
@@ -107,10 +107,10 @@ const AddProduct = () => {
             <div className="form-group">
                 <label className="text-muted">Category</label>
                 <select onChange={handleChange} className="form-control" name='category'>
-                <option>Please select</option>
+                    <option>Please select</option>
                     {categories &&
-                        categories.map((c,i)=>{
-                       return <option key={i} value={c._id}>{c.name}</option>
+                        categories.map((c, i) => {
+                            return <option key={i} value={c._id}>{c.name}</option>
                         })
                     }
                     {/* <option>Please select</option>

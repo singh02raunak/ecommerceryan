@@ -40,7 +40,7 @@ export const signout = (next) => {
     if (typeof window !== 'undefined') {
         localStorage.removeItem("key")
         // next()
-        next.push('/')
+        next.push('/signin')
         return axios.get(`${api}/signout`)
             .then(res => {
                 console.log("logout", res);
